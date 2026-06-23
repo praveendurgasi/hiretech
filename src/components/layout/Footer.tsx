@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Twitter, LinkedIn, GitHub } from '@mui/icons-material';
-import { BRAND, FOOTER_LINKS, SOCIAL_LINKS } from '../../constants';
+import { BRAND, DEVELOPER_CREDIT, FOOTER_LINKS, SOCIAL_LINKS } from '../../constants';
 import { brandColors } from '../../theme';
 import { BrandLogo } from '../common';
 
@@ -122,7 +122,29 @@ const Footer = () => {
             © {currentYear} {BRAND.name}. All rights reserved.
           </Typography>
           <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.4)' }}>
-            Made with ♥ for the tech community
+            Built for international job seekers worldwide
+          </Typography>
+          <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.35)' }}>
+            {DEVELOPER_CREDIT.label}{' '}
+            {DEVELOPER_CREDIT.url ? (
+              <MuiLink
+                href={DEVELOPER_CREDIT.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: 'rgba(255,255,255,0.55)',
+                  textDecoration: 'none',
+                  fontWeight: 500,
+                  '&:hover': { color: '#60A5FA' },
+                }}
+              >
+                {DEVELOPER_CREDIT.name}
+              </MuiLink>
+            ) : (
+              <Box component="span" sx={{ color: 'rgba(255,255,255,0.55)', fontWeight: 500 }}>
+                {DEVELOPER_CREDIT.name}
+              </Box>
+            )}
           </Typography>
         </Box>
       </Container>

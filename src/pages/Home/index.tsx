@@ -17,18 +17,25 @@ import {
   ArrowForward,
   AutoAwesome,
   BarChart,
+  Bolt,
   BugReport,
+  BusinessCenter,
   CheckCircle,
+  ChatBubbleOutlined,
+  HeadsetMic,
   ExpandMore,
   FindInPage,
+  Inventory2Outlined,
   Hub,
   Insights,
   Lightbulb,
+  LockOutlined,
+  Pause,
   Psychology,
   Radar,
   RocketLaunch,
   SearchOff,
-  Star,
+  SpaOutlined,
   Tune,
 } from '@mui/icons-material';
 import { useEffect, useRef, useState } from 'react';
@@ -38,6 +45,15 @@ import {
   staggerContainer,
   viewportOptions,
 } from '../../animations/variants';
+import { BRAND } from '../../constants';
+import {
+  premiumCardSx,
+  premiumCardCompactSx,
+  premiumIconAvatarSx,
+  premiumStepBadgeSx,
+  pricingCardSx,
+  sectionChipSx,
+} from '../../design-system/styles';
 import { brandColors } from '../../theme';
 
 const MotionBox = motion(Box);
@@ -227,107 +243,120 @@ const SOLUTIONS: SolutionItem[] = [
 
 const HOW_IT_WORKS = [
   {
-    title: 'Upload CV',
-    detail: 'Import your CV and LinkedIn profile to build your baseline candidate model.',
+    title: 'Get subscription',
+    detail: 'Pick Pro or Elite and activate your plan in a few clicks.',
   },
   {
-    title: 'Set Career Goals',
-    detail: 'Define roles, locations, salary targets, industries, and application constraints.',
+    title: 'Our human supervisor collects your data',
+    detail: 'We gather your goals, role preferences, and profile details.',
   },
   {
-    title: 'AI Tailors & Applies',
-    detail: 'HireTech optimizes your CV and auto-submits only to high-match opportunities.',
+    title: 'Our AI agents and human supervisors apply at your own pace',
+    detail: 'Applications are tailored and submitted based on your chosen limits.',
   },
   {
-    title: 'Track & Interview',
-    detail: 'Monitor every application stage and get AI coaching before every interview.',
+    title: 'Pause and apply whenever you need',
+    detail: 'You stay in control and can pause, adjust, or resume anytime.',
   },
 ];
 
 const PRODUCT_PREVIEW = [
   {
-    title: 'ATS Analyzer',
-    detail: 'Predictive ATS scoring with practical fixes before you submit.',
+    title: 'AI Analyst',
+    detail:
+      'Configures and monitors your AI agents. Tracks daily application activity and delivery. Flags issues early and escalates to the Team Lead to fix fast.',
   },
   {
-    title: 'Job Match Feed',
-    detail: 'A ranked stream of roles mapped to your profile strength and goals.',
+    title: 'Team Lead',
+    detail:
+      'Main support for technical help and issue resolution. Reviews and improves your resume and targeting strategy. Handles escalations and ensures quality + speed end-to-end.',
   },
   {
-    title: 'Application Tracker',
-    detail: 'Pipeline health from applied to offer with response-rate diagnostics.',
-  },
-  {
-    title: 'Interview Coach',
-    detail: 'Company and role-specific practice questions, scripts, and feedback.',
-  },
-  {
-    title: 'Salary Insights',
-    detail: 'Compensation intelligence and negotiation guidance for each offer.',
+    title: 'Sales & Feedback Specialist',
+    detail:
+      'Handles billing questions, renewals, and plan upgrades. Collects feedback and ensures improvements are applied. Your point of contact for account updates and support follow-ups.',
   },
 ];
 
 const TESTIMONIALS = [
   {
-    name: 'James Kim',
-    role: 'Senior Software Engineer',
-    company: 'NVIDIA',
-    metric: '4 interviews in 16 days',
-    quote:
-      'HireTech turned my search from random applications into a structured conversion funnel that actually works.',
+    name: 'Immigration clarity',
+    role: 'Visa timelines, government updates, and attorney-backed templates that make the F-1 -> OPT -> H-1B path feel doable.',
+    company: '',
+    metric: '',
+    quote: '',
   },
   {
-    name: 'Sophia Rodriguez',
-    role: 'Data Analyst',
-    company: 'Meta',
-    metric: '+61% response rate',
-    quote:
-      'The ATS optimization and personalized CV flows helped me move from silence to consistent recruiter replies.',
+    name: 'Hire-ready assets',
+    role: 'Resumes, outreach scripts, case studies, and project briefs crafted with operators who hire international talent.',
+    company: '',
+    metric: '',
+    quote: '',
   },
   {
-    name: 'Marcus Patel',
-    role: 'DevOps Engineer',
-    company: 'Amazon',
-    metric: 'Offer in 11 days',
-    quote:
-      'Auto Apply saved me dozens of hours and still kept every submission tailored to each role.',
+    name: 'Live accountability',
+    role: 'Weekly cowork sprints, micro-cohorts, and async check-ins so you never have to navigate the job search alone.',
+    company: '',
+    metric: '',
+    quote: '',
+  },
+  {
+    name: 'Proof-based storytelling',
+    role: 'From capstone labs to freelance gigs, build a narrative that lands interviews in the U.S., Canada, and beyond.',
+    company: '',
+    metric: '',
+    quote: '',
   },
 ];
 
 const PRICING = [
   {
-    plan: 'Free Trial',
-    price: 'Free',
-    subtitle: 'Explore the core workflow',
-    cta: 'Start Free Trial',
-    to: '/signup',
-    features: ['Profile setup', 'Limited ATS checks', 'Guided onboarding', 'Starter job matches'],
-  },
-  {
     plan: 'Pro',
-    price: '£99/month',
-    subtitle: 'For serious job seekers',
+    price: '$149/month',
+    subtitle: 'For serious job seekers · 25 days',
     cta: 'Choose Pro',
-    to: '/checkout',
+    to: '/checkout?plan=pro',
     highlight: true,
-    features: ['Unlimited ATS optimization', 'Auto Apply workflows', 'Interview coach', 'Advanced tracking'],
+    features: [
+      '1 AI agent + 1 human supervisor',
+      'Resume tailored for each job',
+      'ATS-matched resumes for every role',
+      'Apply to up to 25 quality jobs per day',
+      'No ghost jobs (verified postings only)',
+      'AI-assisted applications with quality checks',
+      'Continuous optimization from responses',
+      'Daily progress reports',
+      'Resume shared after every application',
+      'Dedicated team with direct communication',
+    ],
   },
   {
     plan: 'Elite',
-    price: '£149/month',
-    subtitle: 'For accelerated outcomes',
+    price: '$229/month',
+    subtitle: 'For accelerated outcomes · 45 days',
     cta: 'Choose Elite',
-    to: '/checkout',
-    features: ['Everything in Pro', 'Priority support', 'Salary strategy insights', 'Multi-profile targeting'],
+    to: '/checkout?plan=elite',
+    features: [
+      '1 AI agent + 1 human supervisor',
+      'Resume tailored for each job',
+      'ATS-matched resumes for every role',
+      'Apply to up to 45 quality jobs per day',
+      'No ghost jobs (verified postings only)',
+      'AI-assisted applications with quality checks',
+      'Continuous optimization from responses',
+      'Daily progress reports',
+      'Resume shared after every application',
+      'Dedicated team with direct communication',
+    ],
   },
 ];
 
 const COMPARISON_ROWS = [
-  { feature: 'ATS Analyzer', free: true, pro: true, elite: true },
-  { feature: 'Auto Apply', free: false, pro: true, elite: true },
-  { feature: 'Interview Coach', free: false, pro: true, elite: true },
-  { feature: 'Salary Insights', free: false, pro: false, elite: true },
-  { feature: 'Priority Support', free: false, pro: false, elite: true },
+  { feature: 'ATS Analyzer', pro: true, elite: true },
+  { feature: 'Auto Apply', pro: true, elite: true },
+  { feature: 'Interview Coach', pro: true, elite: true },
+  { feature: 'Salary Insights', pro: false, elite: true },
+  { feature: 'Priority Support', pro: true, elite: true },
 ];
 
 const FAQS = [
@@ -352,9 +381,9 @@ const FAQS = [
       'HireTech supports technology, finance, consulting, healthcare, operations, marketing, and many adjacent professional tracks.',
   },
   {
-    question: 'Is there a free trial?',
+    question: 'Can I change plans later?',
     answer:
-      'Yes. You can start with the Free Trial to test ATS optimization, job matching, and the core workflow before upgrading.',
+      'Yes. You can upgrade from Pro to Elite anytime, and our team helps with a smooth transition.',
   },
 ];
 
@@ -703,7 +732,7 @@ const HeroSection = () => (
                     boxShadow: '0 12px 30px rgba(21,101,255,0.35)',
                   }}
                 >
-                  Start Free Trial
+                  Get Started
                 </Button>
                 <Button
                   component={Link}
@@ -754,82 +783,32 @@ const JourneyFlowSection = () => (
         viewport={viewportOptions}
         sx={{ textAlign: 'center', mb: 5 }}
       >
-        <Chip
-          label="Journey Flow"
-          sx={{
-            mb: 1.5,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
+        <Chip label="Journey Flow" sx={sectionChipSx} />
         <Typography variant="h3" sx={{ color: brandColors.dark, mb: 1 }}>
           From Upload To Offer, Measured As A Funnel
         </Typography>
-        <Typography variant="body1" sx={{ color: '#5A688F', maxWidth: 720, mx: 'auto' }}>
-          Keep the story out of the hero and show it as a dedicated conversion flow with clear performance drop-off.
+        <Typography variant="subtitle1" sx={{ color: 'text.secondary', maxWidth: 720, mx: 'auto' }}>
+          Track every milestone from your first CV upload to signed offer — with AI automation and human
+          support guiding you at each step.
         </Typography>
       </MotionBox>
 
       <Grid container spacing={3}>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Box
-            sx={{
-              p: 2.2,
-              borderRadius: 3,
-              border: '1px solid rgba(21,101,255,0.16)',
-              background: 'linear-gradient(165deg, rgba(255,255,255,0.95) 0%, rgba(245,250,255,0.92) 100%)',
-              boxShadow: '0 12px 28px rgba(21,101,255,0.08)',
-            }}
-          >
-            <Typography variant="subtitle1" sx={{ fontWeight: 800, color: brandColors.dark, mb: 1.6 }}>
-              Funnel Conversion Graph
-            </Typography>
-            <Stack spacing={1.05}>
-              {[100, 94, 68, 51, 22, 8].map((value, idx) => (
-                <Box key={`journey-funnel-${value}-${idx}`}>
-                  <Stack direction="row" sx={{ justifyContent: 'space-between', mb: 0.45 }}>
-                    <Typography variant="caption" sx={{ color: '#5D6E96', fontWeight: 700 }}>
-                      {JOURNEY_STEPS[idx].title}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: '#1A4FD0', fontWeight: 800 }}>
-                      {value}%
-                    </Typography>
-                  </Stack>
-                  <Box sx={{ height: 10, borderRadius: 999, backgroundColor: '#EAF1FF', overflow: 'hidden' }}>
-                    <MotionBox
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${value}%` }}
-                      viewport={{ once: true, amount: 0.35 }}
-                      transition={{ duration: 0.7, delay: idx * 0.08, ease: 'easeOut' }}
-                      sx={{
-                        height: '100%',
-                        borderRadius: 999,
-                        background:
-                          'linear-gradient(90deg, rgba(21,101,255,0.95), rgba(41,163,255,0.9))',
-                      }}
-                    />
-                  </Box>
-                </Box>
-              ))}
-            </Stack>
-          </Box>
-        </Grid>
-
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12 }}>
           <Stack spacing={1.2}>
             {JOURNEY_STEPS.map((step, idx) => (
               <MotionBox
                 key={`journey-step-${step.title}`}
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.2 }}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOptions}
+                custom={idx}
                 sx={{
-                  p: 1.35,
-                  borderRadius: 2.2,
+                  ...premiumCardCompactSx,
                   border: step.featured
                     ? '1px solid rgba(21,101,255,0.27)'
-                    : '1px solid rgba(21,101,255,0.15)',
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,252,255,0.92) 100%)',
+                    : '1px solid rgba(21,101,255,0.16)',
                 }}
               >
                 <Stack direction="row" spacing={1.1} sx={{ alignItems: 'center' }}>
@@ -852,17 +831,6 @@ const JourneyFlowSection = () => (
                       {step.detail}
                     </Typography>
                   </Box>
-                  <ArrowForward sx={{ color: 'rgba(21,101,255,0.45)', fontSize: 18 }} />
-                  <Chip
-                    size="small"
-                    label={step.metric}
-                    sx={{
-                      fontWeight: 700,
-                      color: brandColors.primary,
-                      backgroundColor: 'rgba(21,101,255,0.1)',
-                      border: '1px solid rgba(21,101,255,0.2)',
-                    }}
-                  />
                 </Stack>
               </MotionBox>
             ))}
@@ -937,15 +905,7 @@ const ProblemSection = () => (
         viewport={viewportOptions}
         sx={{ textAlign: 'center', mb: 7 }}
       >
-        <Chip
-          label="The Problem"
-          sx={{
-            mb: 2,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
+        <Chip label="The Problem" sx={sectionChipSx} />
         <Typography variant="h2" sx={{ mb: 1.5 }}>
           Why Modern Job Searching Is Broken
         </Typography>
@@ -966,34 +926,8 @@ const ProblemSection = () => (
             viewport={viewportOptions}
             custom={i}
           >
-            <Box
-              sx={{
-                p: 3.1,
-                borderRadius: 3,
-                border: '1px solid rgba(21,101,255,0.16)',
-                background:
-                  'linear-gradient(168deg, rgba(255,255,255,0.95) 0%, rgba(246,250,255,0.9) 100%)',
-                height: '100%',
-                transition: 'all 0.25s ease',
-                boxShadow: '0 12px 30px rgba(21,101,255,0.06)',
-                '&:hover': {
-                  borderColor: brandColors.primary,
-                  boxShadow: '0 18px 34px rgba(21,101,255,0.14)',
-                  transform: 'translateY(-4px)',
-                },
-              }}
-            >
-              <Avatar
-                sx={{
-                  width: 48,
-                  height: 48,
-                  background:
-                    'linear-gradient(135deg, rgba(21,101,255,0.12), rgba(41,163,255,0.18))',
-                  color: brandColors.primary,
-                  mb: 2.1,
-                  borderRadius: 2,
-                }}
-              >
+            <Box sx={premiumCardSx}>
+              <Avatar sx={{ ...premiumIconAvatarSx, mb: 2.1 }}>
                 {problem.icon}
               </Avatar>
               <Typography variant="h6" sx={{ mb: 1.2, fontWeight: 700, color: brandColors.dark }}>
@@ -1020,24 +954,14 @@ const SolutionSection = () => (
         viewport={viewportOptions}
         sx={{ textAlign: 'center', mb: 7 }}
       >
-        <Chip
-          label="The Solution"
-          sx={{
-            mb: 2,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
+        <Chip label="The Solution" sx={sectionChipSx} />
         <Typography variant="h2" sx={{ mb: 1.2 }}>
           Meet Your AI Job Application Copilot
         </Typography>
       </MotionBox>
 
       <Stack spacing={3.5}>
-        {SOLUTIONS.map((item, index) => {
-          const reverse = index % 2 === 1;
-
+        {SOLUTIONS.map((item) => {
           return (
             <MotionBox
               key={item.title}
@@ -1046,23 +970,9 @@ const SolutionSection = () => (
               whileInView="visible"
               viewport={viewportOptions}
             >
-              <Grid
-                container
-                spacing={3}
-                sx={{ alignItems: 'stretch', flexDirection: reverse ? { xs: 'column', md: 'row-reverse' } : undefined }}
-              >
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <Box
-                    sx={{
-                      p: { xs: 2.6, md: 3 },
-                      borderRadius: 3,
-                      border: '1px solid rgba(21,101,255,0.15)',
-                      background:
-                        'linear-gradient(165deg, rgba(255,255,255,0.96) 0%, rgba(246,250,255,0.9) 100%)',
-                      boxShadow: '0 12px 30px rgba(5,11,46,0.08)',
-                      height: '100%',
-                    }}
-                  >
+              <Grid container spacing={3}>
+                <Grid size={{ xs: 12 }}>
+                  <Box sx={premiumCardSx}>
                     <Chip
                       size="small"
                       label={`Problem: ${item.problem}`}
@@ -1073,17 +983,7 @@ const SolutionSection = () => (
                         fontWeight: 600,
                       }}
                     />
-                    <Avatar
-                      sx={{
-                        width: 46,
-                        height: 46,
-                        mb: 1.5,
-                        borderRadius: 2,
-                        color: brandColors.primary,
-                        background:
-                          'linear-gradient(135deg, rgba(21,101,255,0.12), rgba(41,163,255,0.18))',
-                      }}
-                    >
+                    <Avatar sx={{ ...premiumIconAvatarSx, width: 46, height: 46, mb: 1.5 }}>
                       {item.icon}
                     </Avatar>
                     <Typography variant="h5" sx={{ fontWeight: 800, color: brandColors.dark, mb: 1.1 }}>
@@ -1093,64 +993,6 @@ const SolutionSection = () => (
                       {item.description}
                     </Typography>
                   </Box>
-                </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <MotionBox
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.2 }}
-                    sx={{
-                      p: 2.2,
-                      borderRadius: 3,
-                      border: '1px solid rgba(21,101,255,0.17)',
-                      background: 'linear-gradient(180deg, #FDFEFF 0%, #F4F8FF 100%)',
-                      boxShadow: '0 16px 32px rgba(21,101,255,0.11)',
-                      height: '100%',
-                    }}
-                  >
-                    <Stack
-                      direction="row"
-                      sx={{ alignItems: 'center', justifyContent: 'space-between', mb: 1.6 }}
-                    >
-                      <Typography variant="subtitle2" sx={{ fontWeight: 800, color: brandColors.dark }}>
-                        {item.mockup}
-                      </Typography>
-                      <Chip size="small" color="info" label="AI" />
-                    </Stack>
-                    <Stack spacing={1}>
-                      {item.score.map((value, idx) => (
-                        <Box
-                          key={`${item.title}-${value}-${idx}`}
-                          sx={{
-                            borderRadius: 2,
-                            p: 1.1,
-                            backgroundColor: '#FFFFFF',
-                            border: '1px solid #E4ECFF',
-                          }}
-                        >
-                          <Typography variant="caption" sx={{ color: '#61719A' }}>
-                            Optimization Signal {idx + 1}
-                          </Typography>
-                          <Box
-                            sx={{
-                              mt: 0.8,
-                              height: 8,
-                              borderRadius: 999,
-                              backgroundColor: '#EAF1FF',
-                              overflow: 'hidden',
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: `${value}%`,
-                                height: '100%',
-                                background: 'linear-gradient(90deg, #1565FF, #29A3FF)',
-                              }}
-                            />
-                          </Box>
-                        </Box>
-                      ))}
-                    </Stack>
-                  </MotionBox>
                 </Grid>
               </Grid>
             </MotionBox>
@@ -1171,76 +1013,111 @@ const HowItWorksSection = () => (
         viewport={viewportOptions}
         sx={{ textAlign: 'center', mb: 7 }}
       >
-        <Chip
-          label="How It Works"
-          sx={{
-            mb: 2,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
+        <Chip label="How It Works" sx={sectionChipSx} />
         <Typography variant="h2" sx={{ mb: 1.3 }}>
-          From Sign-Up To Offer In Days
+          How It Works
+        </Typography>
+        <Typography variant="subtitle1" sx={{ color: '#718096', maxWidth: 640, mx: 'auto' }}>
+          Four simple steps from subscription to automated applications — with full control at every stage.
         </Typography>
       </MotionBox>
 
-      <Box sx={{ position: 'relative' }}>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 23,
-            left: { xs: 23, md: 0 },
-            right: { xs: 'auto', md: 0 },
-            width: { xs: 2, md: '100%' },
-            height: { xs: 'calc(100% - 30px)', md: 2 },
-            background:
-              'linear-gradient(90deg, rgba(21,101,255,0.2), rgba(41,163,255,0.45), rgba(21,101,255,0.2))',
-          }}
-        />
-        <Grid container spacing={3}>
-          {HOW_IT_WORKS.map((step, index) => (
-            <Grid key={step.title} size={{ xs: 12, md: 3 }}>
-              <MotionBox
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOptions}
-                custom={index}
+      <Grid container spacing={2.6}>
+        {HOW_IT_WORKS.map((step, index) => (
+          <MotionGrid
+            key={step.title}
+            size={{ xs: 12, sm: 6, md: 3 }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+            custom={index}
+            sx={{
+              position: 'relative',
+              '&::after':
+                index < HOW_IT_WORKS.length - 1
+                  ? {
+                      content: '""',
+                      position: 'absolute',
+                      top: { xs: 'auto', md: '38%' },
+                      bottom: { xs: -14, md: 'auto' },
+                      left: { xs: '50%', md: 'auto' },
+                      right: { xs: 'auto', md: -18 },
+                      transform: { xs: 'translateX(-50%)', md: 'none' },
+                      width: { xs: 2, md: 28 },
+                      height: { xs: 20, md: 2 },
+                      background: `linear-gradient(${index % 2 === 0 ? '180deg' : '90deg'}, ${brandColors.primary}, ${brandColors.secondary})`,
+                      opacity: 0.28,
+                      borderRadius: 1,
+                      display: { xs: index === HOW_IT_WORKS.length - 1 ? 'none' : 'block', md: 'block' },
+                      zIndex: 0,
+                    }
+                  : {},
+            }}
+          >
+            <Box
+              sx={{
+                ...premiumCardSx,
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Box sx={premiumStepBadgeSx}>{index + 1}</Box>
+              <Avatar sx={{ ...premiumIconAvatarSx, mb: 2 }}>
+                {index === 0 ? <Inventory2Outlined /> : null}
+                {index === 1 ? <Psychology /> : null}
+                {index === 2 ? <Bolt /> : null}
+                {index === 3 ? <Pause /> : null}
+              </Avatar>
+              <Typography
+                variant="overline"
                 sx={{
-                  position: 'relative',
-                  p: 2.5,
-                  border: '1px solid rgba(21,101,255,0.15)',
-                  borderRadius: 3,
-                  background:
-                    'linear-gradient(170deg, rgba(255,255,255,0.96) 0%, rgba(246,250,255,0.88) 100%)',
-                  minHeight: 188,
-                  boxShadow: '0 12px 24px rgba(21,101,255,0.08)',
+                  color: brandColors.primary,
+                  fontWeight: 800,
+                  letterSpacing: '0.1em',
+                  mb: 1,
+                  display: 'block',
                 }}
               >
-                <Avatar
-                  sx={{
-                    width: 48,
-                    height: 48,
-                    mb: 1.5,
-                    color: '#fff',
-                    fontWeight: 800,
-                    background: 'linear-gradient(135deg, #1565FF, #29A3FF)',
-                  }}
-                >
-                  {index + 1}
-                </Avatar>
-                <Typography variant="h6" sx={{ fontWeight: 700, color: brandColors.dark, mb: 1 }}>
-                  {step.title}
-                </Typography>
-                <Typography variant="body2" sx={{ color: '#5B6991', lineHeight: 1.65 }}>
-                  {step.detail}
-                </Typography>
-              </MotionBox>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+                {`Step ${index + 1}`}
+              </Typography>
+              <Typography variant="h6" sx={{ fontWeight: 700, color: brandColors.dark, mb: 1.2 }}>
+                {step.title}
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#5B6991', lineHeight: 1.65 }}>
+                {step.detail}
+              </Typography>
+            </Box>
+          </MotionGrid>
+        ))}
+      </Grid>
+
+      <MotionBox
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOptions}
+        sx={{ mt: 6, textAlign: 'center' }}
+      >
+        <Typography
+          variant="subtitle1"
+          sx={{
+            color: '#5B6991',
+            fontStyle: 'italic',
+            maxWidth: 520,
+            mx: 'auto',
+            px: 2,
+            py: 1.5,
+            borderRadius: 2,
+            border: '1px solid rgba(21,101,255,0.12)',
+            backgroundColor: 'rgba(255,255,255,0.7)',
+          }}
+        >
+          We recommend applying to 20–25 relevant jobs per day for better results.
+        </Typography>
+      </MotionBox>
     </Container>
   </Box>
 );
@@ -1253,76 +1130,45 @@ const ProductPreviewSection = () => (
         initial="hidden"
         whileInView="visible"
         viewport={viewportOptions}
-        sx={{ textAlign: 'center', mb: 6 }}
+        sx={{ textAlign: 'center', mb: 7 }}
       >
-        <Chip
-          label="Product Preview"
-          sx={{
-            mb: 2,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
-        <Typography variant="h2">AI Product Surface Built For Conversion</Typography>
+        <Chip label="Our Support Team" sx={sectionChipSx} />
+        <Typography variant="h2" sx={{ mb: 1.5 }}>
+          A Dedicated Team That Owns Your Outcomes, Not Just AI
+        </Typography>
+        <Typography variant="subtitle1" sx={{ color: '#718096', maxWidth: 820, mx: 'auto' }}>
+          Throughout your subscription, you'll be supported end-to-end by an AI Analyst, a Team Lead, and a Sales &
+          Feedback Specialist who stay with you from start to finish.
+        </Typography>
       </MotionBox>
 
-      <Box
-        sx={{
-          border: '1px solid rgba(21,101,255,0.16)',
-          borderRadius: 4,
-          background: 'linear-gradient(180deg, #FDFEFF 0%, #F4F8FF 100%)',
-          p: { xs: 2, md: 3 },
-          boxShadow: '0 20px 50px rgba(5,11,46,0.1)',
-          backdropFilter: 'blur(14px)',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <Box
-          sx={{
-            position: 'absolute',
-            width: 220,
-            height: 220,
-            borderRadius: '50%',
-            top: -90,
-            right: -60,
-            background: 'radial-gradient(circle, rgba(41,163,255,0.25), transparent 70%)',
-          }}
-        />
-        <Grid container spacing={2}>
-          {PRODUCT_PREVIEW.map((item, i) => (
-            <Grid key={item.title} size={{ xs: 12, md: i === 0 ? 12 : 6 }}>
-              <MotionBox
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ duration: 0.25 }}
-                sx={{
-                  p: 2.2,
-                  borderRadius: 2.5,
-                  border: '1px solid rgba(21,101,255,0.14)',
-                  background:
-                    'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(250,252,255,0.96) 100%)',
-                  minHeight: i === 0 ? 126 : 108,
-                  boxShadow: '0 8px 24px rgba(21,101,255,0.08)',
-                }}
-              >
-                <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mb: 1 }}>
-                  <Lightbulb sx={{ color: brandColors.primary, fontSize: 20 }} />
-                  <Typography
-                    variant="h6"
-                    sx={{ fontSize: '1rem', fontWeight: 800, color: brandColors.dark }}
-                  >
-                    {item.title}
-                  </Typography>
-                </Stack>
-                <Typography variant="body2" sx={{ color: '#5A688F', lineHeight: 1.65 }}>
-                  {item.detail}
-                </Typography>
-              </MotionBox>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <Grid container spacing={2.6}>
+        {PRODUCT_PREVIEW.map((item, i) => (
+          <MotionGrid
+            key={item.title}
+            size={{ xs: 12, md: 4 }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+            custom={i}
+          >
+            <Box sx={premiumCardSx}>
+              <Avatar sx={{ ...premiumIconAvatarSx, width: 52, height: 52, mb: 2.1 }}>
+                {i === 0 ? <BusinessCenter /> : null}
+                {i === 1 ? <LockOutlined /> : null}
+                {i === 2 ? <HeadsetMic /> : null}
+              </Avatar>
+              <Typography variant="h6" sx={{ fontWeight: 700, color: brandColors.dark, mb: 1.2 }}>
+                {item.title}
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#5B6991', lineHeight: 1.65 }}>
+                {item.detail}
+              </Typography>
+            </Box>
+          </MotionGrid>
+        ))}
+      </Grid>
     </Container>
   </Box>
 );
@@ -1335,78 +1181,46 @@ const TestimonialsSection = () => (
         initial="hidden"
         whileInView="visible"
         viewport={viewportOptions}
-        sx={{ textAlign: 'center', mb: 6 }}
+        sx={{ textAlign: 'center', mb: 7 }}
       >
-        <Chip
-          label="Testimonials"
-          sx={{
-            mb: 2,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
-        <Typography variant="h2">Real People. Real Outcomes.</Typography>
+        <Chip label={`Why ${BRAND.name}`} sx={sectionChipSx} />
+        <Typography variant="h2" sx={{ mb: 1.5 }}>
+          {`Why ${BRAND.name} Works`}
+        </Typography>
+        <Typography variant="subtitle1" sx={{ color: '#718096', maxWidth: 680, mx: 'auto' }}>
+          We blend visa expertise, hiring operator insights, and global community support so you can execute with
+          confidence.
+        </Typography>
       </MotionBox>
 
-      <motion.div
-        initial={{ x: 0 }}
-        whileInView={{ x: ['0%', '-8%', '0%'] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        viewport={{ once: false, amount: 0.4 }}
-      >
-        <Grid container spacing={3}>
-          {TESTIMONIALS.map((item) => (
-            <Grid key={item.name} size={{ xs: 12, md: 4 }}>
-              <Box
-                sx={{
-                  p: 3,
-                  borderRadius: 3,
-                  border: '1px solid rgba(21,101,255,0.14)',
-                  backgroundColor: '#FFFFFF',
-                  boxShadow: '0 12px 28px rgba(21,101,255,0.08)',
-                  height: '100%',
-                }}
-              >
-                <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', mb: 1.7 }}>
-                  <Avatar sx={{ bgcolor: brandColors.primary }}>{item.name.charAt(0)}</Avatar>
-                  <Box>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 800, color: brandColors.dark }}>
-                      {item.name}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: '#5A688F', display: 'block' }}>
-                      {item.role}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: '#5A688F' }}>
-                      {item.company}
-                    </Typography>
-                  </Box>
-                </Stack>
-
-                <Stack direction="row" spacing={0.5} sx={{ mb: 1.2 }}>
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={`${item.name}-${star}`} sx={{ color: '#FDBA2D', fontSize: 18 }} />
-                  ))}
-                </Stack>
-
-                <Chip
-                  size="small"
-                  label={item.metric}
-                  sx={{
-                    mb: 1.2,
-                    backgroundColor: 'rgba(21,101,255,0.08)',
-                    color: brandColors.primary,
-                    fontWeight: 700,
-                  }}
-                />
-                <Typography variant="body2" sx={{ color: '#5A688F', lineHeight: 1.7 }}>
-                  {item.quote}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </motion.div>
+      <Grid container spacing={2.6}>
+        {TESTIMONIALS.map((item, i) => (
+          <MotionGrid
+            key={item.name}
+            size={{ xs: 12, sm: 6, lg: 3 }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+            custom={i}
+          >
+            <Box sx={premiumCardSx}>
+              <Avatar sx={{ ...premiumIconAvatarSx, mb: 2.1 }}>
+                {i === 0 ? <SpaOutlined /> : null}
+                {i === 1 ? <BusinessCenter /> : null}
+                {i === 2 ? <Psychology /> : null}
+                {i === 3 ? <ChatBubbleOutlined /> : null}
+              </Avatar>
+              <Typography variant="h6" sx={{ mb: 1.2, fontWeight: 700, color: brandColors.dark }}>
+                {item.name}
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#5B6991', lineHeight: 1.65 }}>
+                {item.role}
+              </Typography>
+            </Box>
+          </MotionGrid>
+        ))}
+      </Grid>
     </Container>
   </Box>
 );
@@ -1421,40 +1235,14 @@ const PricingSection = () => (
         viewport={viewportOptions}
         sx={{ textAlign: 'center', mb: 6 }}
       >
-        <Chip
-          label="Pricing"
-          sx={{
-            mb: 2,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
-        <Typography variant="h2">Simple Transparent Pricing</Typography>
+        <Chip label="Products" sx={sectionChipSx} />
+        <Typography variant="h2">Choose Your Plan</Typography>
       </MotionBox>
 
       <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
         {PRICING.map((plan) => (
-          <Grid size={{ xs: 12, md: 4 }} key={plan.plan}>
-            <Box
-              sx={{
-                p: 3.3,
-                borderRadius: 3,
-                border: plan.highlight
-                  ? `1px solid ${brandColors.primary}`
-                  : '1px solid rgba(21,101,255,0.16)',
-                background: plan.highlight
-                  ? 'linear-gradient(180deg, #FFFFFF 0%, #EEF4FF 100%)'
-                  : 'linear-gradient(170deg, #FFFFFF 0%, #F8FAFF 100%)',
-                boxShadow: plan.highlight
-                  ? '0 16px 36px rgba(21,101,255,0.22)'
-                  : '0 10px 24px rgba(21,101,255,0.08)',
-                height: '100%',
-                position: 'relative',
-                transition: 'transform 0.25s ease',
-                '&:hover': { transform: 'translateY(-4px)' },
-              }}
-            >
+          <Grid size={{ xs: 12, md: 6 }} key={plan.plan}>
+            <Box sx={{ ...pricingCardSx(!!plan.highlight), position: 'relative' }}>
               {plan.highlight ? (
                 <Chip
                   label="Most Popular"
@@ -1526,17 +1314,12 @@ const PricingSection = () => (
               alignItems: 'center',
             }}
           >
-            <Grid size={{ xs: 6, md: 4 }}>
+            <Grid size={{ xs: 8, md: 6 }}>
               <Typography variant="body2" sx={{ fontWeight: 700, color: brandColors.dark }}>
                 {row.feature}
               </Typography>
             </Grid>
-            <Grid size={{ xs: 2, md: 2.6 }}>
-              <Typography variant="body2" sx={{ color: '#6C7AA0', textAlign: 'center' }}>
-                {row.free ? 'Yes' : 'No'}
-              </Typography>
-            </Grid>
-            <Grid size={{ xs: 2, md: 2.6 }}>
+            <Grid size={{ xs: 2, md: 3 }}>
               <Typography
                 variant="body2"
                 sx={{ color: row.pro ? brandColors.primary : '#6C7AA0', fontWeight: 700, textAlign: 'center' }}
@@ -1544,7 +1327,7 @@ const PricingSection = () => (
                 {row.pro ? 'Yes' : 'No'}
               </Typography>
             </Grid>
-            <Grid size={{ xs: 2, md: 2.8 }}>
+            <Grid size={{ xs: 2, md: 3 }}>
               <Typography
                 variant="body2"
                 sx={{ color: row.elite ? brandColors.primary : '#6C7AA0', fontWeight: 700, textAlign: 'center' }}
@@ -1569,15 +1352,7 @@ const FAQSection = () => (
         viewport={viewportOptions}
         sx={{ textAlign: 'center', mb: 4.5 }}
       >
-        <Chip
-          label="FAQ"
-          sx={{
-            mb: 2,
-            backgroundColor: 'rgba(21,101,255,0.08)',
-            color: brandColors.primary,
-            fontWeight: 700,
-          }}
-        />
+        <Chip label="FAQ" sx={sectionChipSx} />
         <Typography variant="h2">Frequently Asked Questions</Typography>
       </MotionBox>
 
@@ -1677,7 +1452,7 @@ const FinalCTASection = () => (
             py: 1.75,
           }}
         >
-          Start Free Trial
+          Get Started
         </Button>
         <Button
           component={Link}

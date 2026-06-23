@@ -65,9 +65,8 @@ const Navbar = () => {
                     px: { xs: 0.5, sm: 0.8 },
                     py: { xs: 0.45, sm: 0.6 },
                     borderRadius: 2,
-                    transition: 'background-color 0.2s ease',
+                    transition: 'color 0.2s ease',
                     '&:hover': {
-                      backgroundColor: 'rgba(21,101,255,0.04)',
                       '& [data-slot="brand-logo-image"]': {
                         transform: 'translateY(-0.5px)',
                         filter: 'saturate(1.06)',
@@ -112,8 +111,9 @@ const Navbar = () => {
                     px: 1.5,
                     py: 1,
                     borderRadius: 2,
+                    transition: 'color 0.2s ease',
                     '&:hover': {
-                      backgroundColor: 'rgba(21,101,255,0.06)',
+                      backgroundColor: 'transparent',
                       color: theme.palette.primary.main,
                     },
                   }}
@@ -129,14 +129,6 @@ const Navbar = () => {
               spacing={1.5}
               sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}
             >
-              <Button
-                component={Link}
-                to="/login"
-                variant="text"
-                sx={{ color: theme.palette.text.primary, fontWeight: 500 }}
-              >
-                Log in
-              </Button>
               <Button
                 component={Link}
                 to="/signup"
@@ -189,6 +181,11 @@ const Navbar = () => {
                       ? theme.palette.primary.main
                       : theme.palette.text.primary,
                     fontWeight: isActive(link.href) ? 600 : 400,
+                    transition: 'color 0.2s ease',
+                    '&:hover': {
+                      backgroundColor: 'transparent',
+                      color: theme.palette.primary.main,
+                    },
                   }}
                 >
                   <ListItemText primary={link.label} />
@@ -197,16 +194,6 @@ const Navbar = () => {
             ))}
           </List>
           <Box sx={{ mt: 3, px: 1 }}>
-            <Button
-              fullWidth
-              component={Link}
-              to="/login"
-              variant="outlined"
-              sx={{ mb: 1.5 }}
-              onClick={() => setDrawerOpen(false)}
-            >
-              Log in
-            </Button>
             <Button
               fullWidth
               component={Link}

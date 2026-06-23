@@ -1,16 +1,18 @@
 export const BRAND = {
   name: 'HireTech Careers',
-  tagline: 'Hire Smarter. Scale Faster.',
+  tagline: 'Land Your Dream Job. 3× Faster.',
   description:
-    'The AI-powered hiring platform that connects top tech talent with the world\'s fastest-growing companies.',
+    'Your AI job application copilot — tailored resumes, ATS optimization, and automated applications backed by a dedicated human support team.',
   url: 'https://hiretechcareers.com',
-  email: 'hello@hiretechcareers.com',
-  supportEmail: 'support@hiretechcareers.com',
+  email: 'hiretech.ai@outlook.com',
+  supportEmail: 'hiretech.ai@outlook.com',
+  phone: '+91 6305063870',
+  address: 'Madhapur, Hyderabad, India, 500081',
 };
 
 export const NAV_LINKS = [
   { label: 'Features', href: '/features' },
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'Products', href: '/products' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -21,112 +23,107 @@ export const SOCIAL_LINKS = {
   github: 'https://github.com/hiretechcareers',
 };
 
-export const STATS = [
-  { value: 50000, suffix: '+', label: 'Active Candidates' },
-  { value: 2000, suffix: '+', label: 'Hiring Companies' },
-  { value: 98, suffix: '%', label: 'Placement Rate' },
-  { value: 4.9, suffix: '/5', label: 'Average Rating', decimals: 1 },
-];
+/** Footer credit — update name and URL for your portfolio or studio */
+export const DEVELOPER_CREDIT = {
+  label: 'Designed & developed by',
+  name: 'Velvora Studio',
+  url: 'https://www.velvorastudio.in/',
+};
 
-export const PRICING_PLANS = [
-  {
-    id: 'starter',
-    name: 'Starter',
-    price: 49,
-    period: '/month',
-    description: 'Perfect for small teams just getting started.',
-    features: [
-      'Up to 5 active job posts',
-      'AI candidate matching',
-      'Basic analytics',
-      'Email support',
-      'ATS integrations',
-    ],
-    cta: 'Get Started',
-    highlighted: false,
-  },
-  {
-    id: 'growth',
-    name: 'Growth',
-    price: 149,
-    period: '/month',
-    description: 'Scale your hiring with advanced tools.',
-    features: [
-      'Unlimited job posts',
-      'Advanced AI matching',
-      'Full analytics dashboard',
-      'Priority support',
-      'Custom career page',
-      'Team collaboration',
-      'API access',
-    ],
-    cta: 'Start Free Trial',
-    highlighted: true,
-    badge: 'Most Popular',
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    price: 399,
-    period: '/month',
-    description: 'Built for high-volume hiring teams.',
-    features: [
-      'Everything in Growth',
-      'Dedicated account manager',
-      'Custom integrations',
-      'SSO & advanced security',
-      'SLA guarantee',
-      'Onboarding & training',
-      'White-label options',
-    ],
-    cta: 'Contact Sales',
-    highlighted: false,
-  },
+export const STATS = [
+  { value: 18, suffix: 'K+', label: 'Jobs Landed' },
+  { value: 94, suffix: '%', label: 'ATS Pass Rate' },
+  { value: 3.2, suffix: '×', label: 'More Interviews', decimals: 1 },
+  { value: 11, suffix: ' Days', label: 'Avg. Time to Offer' },
 ];
 
 export const FEATURES = [
   {
-    icon: 'Cpu',
-    title: 'AI-Powered Matching',
+    icon: 'FindInPage',
+    title: 'ATS Resume Optimization',
     description:
-      'Our proprietary algorithm surfaces the top 1% of candidates for every role, saving hours of manual screening.',
+      'Every resume is rewritten around role-critical keywords and recruiter ranking signals so you pass automated screening.',
   },
   {
-    icon: 'BarChart3',
-    title: 'Real-Time Analytics',
+    icon: 'AutoAwesome',
+    title: 'Automated Job Discovery',
     description:
-      'Track pipeline health, time-to-hire, and diversity metrics with beautiful, actionable dashboards.',
+      'Your copilot scans thousands of postings and surfaces high-fit roles aligned to your goals, visa status, and experience.',
   },
   {
-    icon: 'Users',
-    title: 'Collaborative Hiring',
+    icon: 'RocketLaunch',
+    title: 'Smart Auto Apply',
     description:
-      'Keep your entire team aligned with shared scorecards, interview kits, and decision workflows.',
+      'Submit tailored, personalized applications at scale — up to 25 or 45 quality jobs per day with human quality checks.',
   },
   {
-    icon: 'Zap',
-    title: 'Instant Integrations',
+    icon: 'Psychology',
+    title: 'Interview Prep Coach',
     description:
-      'Connect seamlessly with Slack, Greenhouse, Lever, Workday, and 100+ tools your team already loves.',
+      'Get role-specific interview questions, talking points, and recruiter message suggestions before every conversation.',
   },
   {
-    icon: 'Shield',
-    title: 'Enterprise Security',
+    icon: 'Insights',
+    title: 'Application Analytics',
     description:
-      'SOC 2 Type II certified with SSO, RBAC, and audit logs so your data stays protected.',
+      'Track conversion by role, resume variant, and company segment to see exactly what is driving callbacks and offers.',
   },
   {
-    icon: 'Globe',
-    title: 'Global Talent Pool',
+    icon: 'HeadsetMic',
+    title: 'Dedicated Human Support',
     description:
-      'Access verified candidates from 180+ countries with built-in visa sponsorship and relocation filters.',
+      'An AI Analyst, Team Lead, and Feedback Specialist stay with you end-to-end — not just software, a real team behind you.',
+  },
+];
+
+const SHARED_PRICING_FEATURES = [
+  '1 AI agent + 1 human supervisor',
+  'Resume tailored for each job',
+  'ATS-matched resumes for every role',
+  'No ghost jobs (verified postings only)',
+  'AI-assisted applications with quality checks',
+  'Continuous optimization from responses',
+  'Daily progress reports',
+  'Resume shared after every application',
+  'Dedicated team with direct communication',
+] as const;
+
+export const PRICING_PLANS = [
+  {
+    id: 'pro',
+    name: 'Pro',
+    price: 149,
+    period: '/month',
+    description: 'For serious job seekers · 25 days',
+    features: [
+      ...SHARED_PRICING_FEATURES.slice(0, 3),
+      'Apply to up to 25 quality jobs per day',
+      ...SHARED_PRICING_FEATURES.slice(3),
+    ],
+    cta: 'Choose Pro',
+    highlighted: true,
+    badge: 'Most Popular',
+  },
+  {
+    id: 'elite',
+    name: 'Elite',
+    price: 229,
+    period: '/month',
+    description: 'For accelerated outcomes · 45 days',
+    features: [
+      ...SHARED_PRICING_FEATURES.slice(0, 3),
+      'Apply to up to 45 quality jobs per day',
+      ...SHARED_PRICING_FEATURES.slice(3),
+    ],
+    cta: 'Choose Elite',
+    highlighted: false,
   },
 ];
 
 export const FOOTER_LINKS = {
   Product: [
     { label: 'Features', href: '/features' },
-    { label: 'Pricing', href: '/pricing' },
+    { label: 'Products', href: '/products' },
     { label: 'Changelog', href: '/changelog' },
     { label: 'Roadmap', href: '/roadmap' },
   ],

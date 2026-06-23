@@ -16,6 +16,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { PRICING_PLANS } from '../../constants';
 import { fadeInUp, staggerContainer, viewportOptions } from '../../animations/variants';
+import { pageHeroSx, pricingCardSx, sectionChipSx } from '../../design-system/styles';
 import { brandColors } from '../../theme';
 
 const MotionBox = motion(Box);
@@ -23,76 +24,52 @@ const MotionBox = motion(Box);
 const Pricing = () => {
   return (
     <Box>
-      {/* Header */}
-      <Box
-        sx={{
-          pt: { xs: 10, md: 14 },
-          pb: { xs: 6, md: 8 },
-          background: `radial-gradient(ellipse 70% 50% at 50% 0%, rgba(21,101,255,0.10) 0%, transparent 65%), ${brandColors.background}`,
-          textAlign: 'center',
-        }}
-      >
+      <Box sx={pageHeroSx}>
         <Container maxWidth="md">
           <MotionBox variants={staggerContainer} initial="hidden" animate="visible">
             <motion.div variants={fadeInUp}>
-              <Chip label="Pricing" sx={{ mb: 2.5, backgroundColor: 'rgba(21,101,255,0.08)', color: brandColors.primary, fontWeight: 600 }} />
+              <Chip label="Products" sx={sectionChipSx} />
             </motion.div>
             <motion.div variants={fadeInUp}>
               <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', md: '3.75rem' }, mb: 2.5 }}>
-                Simple, transparent pricing
+                Choose your plan
               </Typography>
             </motion.div>
             <motion.div variants={fadeInUp}>
-              <Typography variant="subtitle1" sx={{ color: '#718096', maxWidth: 500, mx: 'auto' }}>
-                No hidden fees. No long-term contracts. Pick the plan that fits your team and upgrade anytime.
+              <Typography variant="subtitle1" sx={{ color: 'text.secondary', maxWidth: 520, mx: 'auto' }}>
+                No hidden fees. No long-term contracts. Pick Pro or Elite and start landing interviews
+                faster.
               </Typography>
             </motion.div>
           </MotionBox>
         </Container>
       </Box>
 
-      {/* Plans */}
       <Box sx={{ py: { xs: 6, md: 10 }, backgroundColor: brandColors.white }}>
         <Container maxWidth="lg">
           <Grid container spacing={3} sx={{ alignItems: 'stretch' }}>
             {PRICING_PLANS.map((plan, i) => (
-              <Grid size={{ xs: 12, md: 4 }} key={plan.id}>
+              <Grid size={{ xs: 12, md: 6 }} key={plan.id}>
                 <MotionBox
                   variants={fadeInUp}
                   initial="hidden"
                   whileInView="visible"
                   viewport={viewportOptions}
                   custom={i}
-                  sx={{
-                    height: '100%',
-                    p: 4,
-                    borderRadius: 3,
-                    border: plan.highlighted
-                      ? `2px solid ${brandColors.primary}`
-                      : '1px solid #E2E8F0',
-                    background: plan.highlighted
-                      ? `linear-gradient(180deg, rgba(21,101,255,0.04) 0%, #fff 100%)`
-                      : brandColors.white,
-                    position: 'relative',
-                    boxShadow: plan.highlighted ? '0 16px 48px rgba(21,101,255,0.16)' : 'none',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
+                  sx={{ ...pricingCardSx(plan.highlighted), position: 'relative' }}
                 >
                   {plan.badge && (
                     <Chip
                       label={plan.badge}
+                      color="primary"
                       size="small"
                       sx={{
                         position: 'absolute',
-                        top: -14,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        background: 'linear-gradient(135deg, #1565FF, #29A3FF)',
+                        top: 16,
+                        right: 16,
+                        fontWeight: 800,
+                        background: `linear-gradient(135deg, ${brandColors.primary}, ${brandColors.secondary})`,
                         color: '#fff',
-                        fontWeight: 700,
-                        fontSize: '0.75rem',
-                        px: 1,
                       }}
                     />
                   )}
@@ -103,20 +80,27 @@ const Pricing = () => {
                     <Box component="span" sx={{ fontSize: '3rem', fontWeight: 800, color: brandColors.dark }}>
                       ${plan.price}
                     </Box>
-                    <Box component="span" sx={{ color: '#718096', ml: 0.5 }}>
+                    <Box component="span" sx={{ color: 'text.secondary', ml: 0.5 }}>
                       {plan.period}
                     </Box>
                   </Box>
-                  <Typography variant="body2" sx={{ color: '#718096', mb: 3, lineHeight: 1.7 }}>
+                  <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.7 }}>
                     {plan.description}
                   </Typography>
                   <Button
                     component={Link}
-                    to={plan.id === 'enterprise' ? '/contact' : `/checkout?plan=${plan.id}`}
+                    to={`/checkout?plan=${plan.id}`}
                     variant={plan.highlighted ? 'contained' : 'outlined'}
                     fullWidth
                     size="large"
-                    sx={{ mb: 3 }}
+                    sx={{
+                      mb: 3,
+                      ...(plan.highlighted
+                        ? {
+                            background: `linear-gradient(135deg, ${brandColors.primary}, ${brandColors.secondary})`,
+                          }
+                        : {}),
+                    }}
                   >
                     {plan.cta}
                   </Button>
@@ -128,7 +112,7 @@ const Pricing = () => {
                         </ListItemIcon>
                         <ListItemText
                           primary={feature}
-                          slotProps={{ primary: { variant: 'body2', color: '#4A5568' } as object }}
+                          slotProps={{ primary: { variant: 'body2', color: 'text.secondary' } as object }}
                         />
                       </ListItem>
                     ))}
@@ -140,21 +124,20 @@ const Pricing = () => {
         </Container>
       </Box>
 
-      {/* FAQ teaser */}
       <Box sx={{ py: { xs: 8, md: 10 }, backgroundColor: brandColors.background, textAlign: 'center' }}>
         <Container maxWidth="sm">
           <Typography variant="h4" sx={{ mb: 2 }}>
             Still have questions?
           </Typography>
-          <Typography variant="body1" sx={{ color: '#718096', mb: 4 }}>
-            Our team is happy to walk you through the right plan for your company.
+          <Typography variant="body1" sx={{ color: 'text.secondary', mb: 4 }}>
+            Our team is happy to help you pick the right plan for your job search goals.
           </Typography>
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ justifyContent: 'center' }}>
             <Button component={Link} to="/contact" variant="contained" size="large">
-              Contact Sales
+              Contact Us
             </Button>
             <Button component={Link} to="/features" variant="outlined" size="large">
-              Compare Features
+              Explore Features
             </Button>
           </Stack>
         </Container>

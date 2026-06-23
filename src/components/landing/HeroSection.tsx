@@ -110,7 +110,7 @@ const HeroSection = () => {
                       size="large"
                       sx={{ minWidth: { sm: 180 } }}
                     >
-                      Start Free Trial
+                      Get Started
                     </PrimaryButton>
                     <SecondaryButton
                       href="/contact"
