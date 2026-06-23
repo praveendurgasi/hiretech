@@ -13,6 +13,7 @@ const MotionBox = motion(Box);
 
 const TEAM = [
   { name: 'Durgasi Praveen', role: 'CEO & Founder', initials: 'DP' },
+  { name: 'Venkata Rao', role: 'Managing Director', initials: 'VR' },
   { name: 'Neeraj Kumar', role: 'Product Head', initials: 'NK' },
   { name: 'Chandra Kanth', role: 'Operations Lead', initials: 'CK' },
 ];
