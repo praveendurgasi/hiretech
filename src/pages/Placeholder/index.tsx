@@ -1,7 +1,6 @@
 import { Box, Container, Typography, Chip, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { BRAND } from '../../constants';
 import { fadeInUp, staggerContainer, viewportOptions } from '../../animations/variants';
 import { pageHeroSx, sectionChipSx } from '../../design-system/styles';
 import { brandColors } from '../../theme';
@@ -30,23 +29,11 @@ export const PLACEHOLDER_PAGES: Record<
     description: 'Insights on job search, visas, and landing offers faster.',
     body: 'Articles and guides are coming soon. We will share practical advice for international candidates and tech professionals.',
   },
-  careers: {
-    title: 'Careers',
-    chip: 'Careers',
-    description: `Join the team behind ${BRAND.name}.`,
-    body: 'We are not hiring publicly yet. If you are interested in working with us, reach out through our contact page or WhatsApp.',
-  },
   privacy: {
     title: 'Privacy Policy',
     chip: 'Legal',
     description: 'How we handle your personal information.',
     body: 'Our full privacy policy is being prepared. We only collect details you submit through our website forms and use them to respond to your job search inquiries.',
-  },
-  terms: {
-    title: 'Terms of Service',
-    chip: 'Legal',
-    description: 'Terms for using HireTech Careers.',
-    body: 'Our terms of service document is being finalized. By using this website and contacting our team, you agree to communicate in good faith and provide accurate information.',
   },
   cookies: {
     title: 'Cookie Policy',

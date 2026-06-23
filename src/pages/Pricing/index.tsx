@@ -84,9 +84,11 @@ const Pricing = () => {
                       {plan.period}
                     </Box>
                   </Box>
-                  <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.7 }}>
-                    {plan.description}
-                  </Typography>
+                  {plan.description ? (
+                    <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.7 }}>
+                      {plan.description}
+                    </Typography>
+                  ) : null}
                   <Button
                     component={Link}
                     to={`/checkout?plan=${plan.id}`}

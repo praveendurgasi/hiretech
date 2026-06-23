@@ -276,9 +276,11 @@ const Checkout = () => {
                       /mo
                     </Typography>
                   </Typography>
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                    {plan.description}
-                  </Typography>
+                  {plan.description ? (
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                      {plan.description}
+                    </Typography>
+                  ) : null}
                 </Box>
                 <Stack spacing={1.5} sx={{ mb: 3 }}>
                   {plan.features.map((f) => (

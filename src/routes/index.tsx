@@ -8,6 +8,8 @@ import Contact from '../pages/Contact';
 import Checkout from '../pages/Checkout';
 import Signup from '../pages/Signup';
 import Dashboard from '../pages/Dashboard';
+import Careers from '../pages/Careers';
+import Terms from '../pages/Terms';
 import PlaceholderPage from '../pages/Placeholder';
 
 const AppRouter = () => {
@@ -26,9 +28,9 @@ const AppRouter = () => {
           <Route path="/changelog" element={<PlaceholderPage slug="changelog" />} />
           <Route path="/roadmap" element={<PlaceholderPage slug="roadmap" />} />
           <Route path="/blog" element={<PlaceholderPage slug="blog" />} />
-          <Route path="/careers" element={<PlaceholderPage slug="careers" />} />
+          <Route path="/careers" element={<Careers />} />
           <Route path="/privacy" element={<PlaceholderPage slug="privacy" />} />
-          <Route path="/terms" element={<PlaceholderPage slug="terms" />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/cookies" element={<PlaceholderPage slug="cookies" />} />
           <Route path="/security" element={<PlaceholderPage slug="security" />} />
         </Route>

@@ -28,7 +28,7 @@ const PlanSelectField = ({
     </MenuItem>
     {PRICING_PLANS.map((plan) => (
       <MenuItem key={plan.id} value={plan.id}>
-        {plan.name} — ${plan.price}/month · {plan.description}
+        {plan.name} — ${plan.price}/month
       </MenuItem>
     ))}
   </TextField>

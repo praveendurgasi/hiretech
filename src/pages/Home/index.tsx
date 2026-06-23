@@ -313,10 +313,9 @@ const PRICING = [
   {
     plan: 'Pro',
     price: '$149/month',
-    subtitle: 'For serious job seekers · 25 days',
     cta: 'Choose Pro',
     to: '/checkout?plan=pro',
-    highlight: true,
+    highlight: false,
     features: [
       '1 AI agent + 1 human supervisor',
       'Resume tailored for each job',
@@ -333,9 +332,9 @@ const PRICING = [
   {
     plan: 'Elite',
     price: '$229/month',
-    subtitle: 'For accelerated outcomes · 45 days',
     cta: 'Choose Elite',
     to: '/checkout?plan=elite',
+    highlight: true,
     features: [
       '1 AI agent + 1 human supervisor',
       'Resume tailored for each job',
@@ -1255,11 +1254,8 @@ const PricingSection = () => (
               <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.8, color: brandColors.dark }}>
                 {plan.plan}
               </Typography>
-              <Typography variant="h3" sx={{ fontWeight: 800, mb: 0.7, color: brandColors.dark }}>
+              <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, color: brandColors.dark }}>
                 {plan.price}
-              </Typography>
-              <Typography variant="body2" sx={{ color: '#5B6991', mb: 2 }}>
-                {plan.subtitle}
               </Typography>
 
               <Stack spacing={1.1} sx={{ mb: 2.4 }}>

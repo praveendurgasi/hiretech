@@ -87,3 +87,14 @@ export const buildContactWhatsAppMessage = ({
     .filter(Boolean)
     .join('\n');
 };
+
+export const buildCareersNotifyWhatsAppMessage = (email: string) =>
+  [
+    `Hi ${BRAND.name} team,`,
+    '',
+    "I'd like to be notified when new career opportunities open.",
+    '',
+    `Email: ${email}`,
+    '',
+    'Sent via website careers page',
+  ].join('\n');
